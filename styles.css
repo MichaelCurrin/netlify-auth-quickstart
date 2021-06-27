@@ -1,1 +1,5 @@
-@import url("https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css")
+@import url("https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css");
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
