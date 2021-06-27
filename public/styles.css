@@ -4,3 +4,12 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   padding: 15px;
 }
+
+.hidden {
+  display: none;
+}
+
+label {
+  margin-bottom: 10px;
+  display: block;
+}
