@@ -37,14 +37,14 @@ function logout() {
 }
 
 /**
- * Retrieves the auth configuration from the server
+ * Retrieve the auth configuration from the server
  */
 function fetchAuthConfig() {
   return fetch("/auth_config.json");
 }
 
 /**
- * Initializes the Auth0 client
+ * Initialize the Auth0 client
  */
 async function configureClient() {
   const response = await fetchAuthConfig();
@@ -57,8 +57,9 @@ async function configureClient() {
 }
 
 /**
- * Checks to see if the user is authenticated. If so, `fn` is executed. Otherwise, the user
- * is prompted to log in
+ * Check if the user is authenticated. If so, `fn` is executed. Otherwise, the user is prompted to
+ * log in.
+ *
  * @param {*} fn The function to execute if the user is logged in
  */
 async function requireAuth(fn, targetUrl) {
@@ -100,6 +101,7 @@ window.onload = async () => {
     console.log("> User is authenticated");
     window.history.replaceState({}, document.title, window.location.pathname);
     updateUI();
+
     return;
   }
 
