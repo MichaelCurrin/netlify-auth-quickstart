@@ -6,11 +6,9 @@ const router = {
   "/login": () => login()
 };
 
-//Declare helper functions
-
 /**
- * Iterates over the elements matching 'selector' and passes them
- * to 'fn'
+ * Iterates over the elements matching 'selector' and passes them to 'fn'.
+ *
  * @param {*} selector The CSS selector to find
  * @param {*} fn The function to execute for every element
  */
@@ -21,14 +19,15 @@ function eachElement(selector, fn) {
 }
 
 /**
- * Tries to display a content panel that is referenced
- * by the specified route URL. These are matched using the
- * router, defined above.
+ * Tries to display a content panel that is referenced by the specified route URL. These are matched
+ * using the router, defined above.
+ *
  * @param {*} url The route URL
  */
 function showContentFromUrl(url) {
   if (router[url]) {
     router[url]();
+
     return true;
   }
 
@@ -44,13 +43,16 @@ function isRouteLink(element) {
 }
 
 /**
- * Displays a content panel specified by the given element id.
+ * Display a content panel specified by the given element id.
+ *
  * All the panels that participate in this flow should have the 'page' class applied,
  * so that it can be correctly hidden before the requested content is shown.
+ *
  * @param {*} id The id of the content to show
  */
 function showContent(id) {
   eachElement(".page", (p) => p.classList.add("hidden"));
+
   document.getElementById(id).classList.remove("hidden");
 }
 
