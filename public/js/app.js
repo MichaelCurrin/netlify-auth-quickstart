@@ -1,4 +1,5 @@
 const SHOWS_URL = "/.netlify/functions/shows"
+const ME_URL = "/.netlify/functions/me"
 
 let auth0 = null;
 
@@ -79,14 +80,14 @@ async function requireAuth(fn, targetUrl) {
 async function callApi(url) {
   try {
     const token = await auth0.getTokenSilently();
-    const payload = {
+    const options = {
       method: 'POST',
       body: "",
       headers: {
         Authorization: `Bearer ${token}`
       }
     }
-    const response = await fetch(url, payload);
+    const response = await fetch(url, options);
 
     const json = await response.json();
     const responseElement = document.getElementById("api-call-result");
@@ -124,7 +125,7 @@ window.onload = async () => {
     } else if (e.target.getAttribute("id") === "call-api") {
       e.preventDefault();
 
-      callApi(SHOWS_URL);
+      callApi(ME_URL);
     }
   });
 
