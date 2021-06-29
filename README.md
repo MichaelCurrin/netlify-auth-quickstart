@@ -16,6 +16,7 @@
 
 [![View - Demo site](https://img.shields.io/badge/View-Demo_site-2ea44f)](https://netlify-function-auth-quickstart.netlify.app/)
 
+You can't access `/login` and `/profile` as URLs directly. But on the root page, you can use the menu in the top right. From there you can login and then view your Profile.
 
 ## About
 
@@ -34,7 +35,11 @@
 
 The Netlify Function and Auth0 part of this example is based on the Gatsby example in [serverless-jwt](https://github.com/sandrinodimattia/serverless-jwt) repo.
 
+The HTML part was based on the [Plain JavaScript](https://auth0.com/docs/quickstart/spa/vanillajs) tutorial and corresponding [auth0-javascript-samples](https://github.com/auth0-samples/auth0-javascript-samples) repo. The first example there has the login flow set up and second example provides a call to an API on the frontend using `callApi` function. That example uses Express as a Node server, so that part was ignored here in favor of Express.
+
 An API was set up in Auth0 for this to work.
+
+The scope was also set up on the API in Auth0 and in the app - I don't know if this is required or not for a basic app but it seems like anything beyond getting your user's profile data needs to be scoped.
 
 1. A user clicks sign in on the frontend of your site.
 2. That does request to `https://MY_APP.auth0.com/authorize` with parameters.
