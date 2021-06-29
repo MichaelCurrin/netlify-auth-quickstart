@@ -1,5 +1,7 @@
 # Netlify Function Auth Quickstart
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/36b6eb3a-9f3c-4c07-bf1f-4d75e03dae85/deploy-status)](https://app.netlify.com/sites/netlify-function-auth-quickstart/deploys)
+
 
 ## Preview
 
