@@ -1,4 +1,5 @@
-// The Auth0 client, initialized in configureClient()
+const SHOWS_URL = "/.netlify/functions/shows"
+
 let auth0 = null;
 
 /**
@@ -44,7 +45,7 @@ function fetchAuthConfig() {
 }
 
 /**
- * Initialize the Auth0 client
+ * Initialize the Auth0 client.
  */
 async function configureClient() {
   const response = await fetchAuthConfig();
@@ -70,6 +71,34 @@ async function requireAuth(fn, targetUrl) {
   }
 
   return login(targetUrl);
+};
+
+/**
+ * Call the API endpoint with an authorization token.
+ */
+async function callApi(url) {
+  try {
+    const token = await auth0.getTokenSilently();
+    const payload = {
+      method: 'POST',
+      body: "",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+    const response = await fetch(url, payload);
+
+    const json = await response.json();
+    const responseElement = document.getElementById("api-call-result");
+
+    responseElement.innerText = JSON.stringify(json, {}, 2);
+
+    document.querySelectorAll("pre code").forEach(hljs.highlightBlock);
+
+    eachElement(".result-block", (c) => c.classList.add("show"));
+  } catch (e) {
+    console.error(e);
+  }
 }
 
 window.onload = async () => {
@@ -92,6 +121,10 @@ window.onload = async () => {
         e.preventDefault();
         window.history.pushState({ url }, {}, url);
       }
+    } else if (e.target.getAttribute("id") === "call-api") {
+      e.preventDefault();
+
+      callApi(SHOWS_URL);
     }
   });
 
