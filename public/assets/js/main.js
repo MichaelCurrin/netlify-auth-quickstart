@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(async function () {
   const token = await auth0.getTokenSilently();
 
   const options = {
