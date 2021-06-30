@@ -7,7 +7,7 @@ const { requireScope } = require("../../lib/auth");
 const SHOWS_SERVICE_URL = "https://api.tvmaze.com/shows";
 const SCOPE = "read:shows";
 
-async function _request(url) {
+async function request(url) {
   const resp = await fetch(url);
   const shows = await resp.json();
 
@@ -23,7 +23,7 @@ exports.handler = requireScope(SCOPE, async (_event, _context) => {
   let payload;
 
   try {
-    payload = await _request(SHOWS_SERVICE_URL);
+    payload = await request(SHOWS_SERVICE_URL);
   } catch (err) {
     payload = { error_description: err.message };
     statusCode = 500;
