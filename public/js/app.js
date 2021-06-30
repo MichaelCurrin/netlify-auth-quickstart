@@ -49,13 +49,13 @@ function fetchAuthConfig() {
  * Initialize the Auth0 client.
  */
 async function configureClient() {
-  const response = await fetchAuthConfig();
-  const config = await response.json();
+  const resp = await fetchAuthConfig();
+  const json = await resp.json();
 
   auth0 = await createAuth0Client({
-    domain: config.domain,
-    client_id: config.clientId,
-    audience: config.audience
+    domain: json.domain,
+    client_id: json.clientId,
+    audience: json.audience
   });
 }
 
@@ -75,20 +75,25 @@ async function requireAuth(fn, targetUrl) {
   return login(targetUrl);
 };
 
+async function _request(url, token) {
+  const options = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+  const resp = await fetch(url, options);
+
+  return await resp.json();
+}
+
 /**
  * Call the API endpoint with an authorization token.
  */
 async function callApi(url) {
   try {
     const token = await auth0.getTokenSilently();
-    const options = {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    }
-    const resp = await fetch(url, options);
 
-    const json = await resp.json();
+    const json = await _request(url, token)
 
     const output = document.getElementById("api-call-result");
     output.innerText = JSON.stringify(json, {}, 2);
