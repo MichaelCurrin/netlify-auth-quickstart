@@ -1,4 +1,5 @@
 {
   "domain": "dev-x1rgzxvi.us.auth0.com",
-  "clientId": "bzH1tzixL8W34435UoA67hjVhk3AieEd"
+  "clientId": "bzH1tzixL8W34435UoA67hjVhk3AieEd",
+  "audience": "https://netlify-function-auth-quickstart.netlify.app"
 }
