@@ -50,12 +50,12 @@ function fetchAuthConfig() {
  */
 async function configureClient() {
   const resp = await fetchAuthConfig();
-  const json = await resp.json();
+  const config = await resp.json();
 
   return await createAuth0Client({
-    domain: json.domain,
-    client_id: json.clientId,
-    audience: json.audience,
+    domain: config.domain,
+    client_id: config.clientId,
+    audience: config.audience,
   });
 }
 
