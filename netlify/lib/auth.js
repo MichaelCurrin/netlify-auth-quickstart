@@ -13,6 +13,10 @@ const verifyJwt = NetlifyJwtVerifier({
 
   mapClaims: (claims) => {
     // Custom claims added in Auth0 have a prefix, which are removed here.
+    // Copied from plain JS example which had http and schemas - don't know if that is relevant
+    // still and if this does anything here or if this entire mapClaims function is needed.
+    // It is a function made specifically in this serverless-jwt package but the docs for it are
+    // poor.
     const user = removeNamespaces(
       `http://schemas.${ISSUER.replace("https://")}`,
       claims
