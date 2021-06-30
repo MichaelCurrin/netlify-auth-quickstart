@@ -5,7 +5,7 @@ const {
 } = require("@serverless-jwt/netlify");
 
 const ISSUER = process.env.JWT_ISSUER;
-const AUDIENCE = process.env.JWT_AUDIENCE
+const AUDIENCE = process.env.JWT_AUDIENCE;
 
 const verifyJwt = NetlifyJwtVerifier({
   issuer: ISSUER,
@@ -13,7 +13,10 @@ const verifyJwt = NetlifyJwtVerifier({
 
   mapClaims: (claims) => {
     // Custom claims added in Auth0 have a prefix, which are removed here.
-    const user = removeNamespaces(`http://schemas.${ISSUER.replace('https://')}`, claims);
+    const user = removeNamespaces(
+      `http://schemas.${ISSUER.replace("https://")}`,
+      claims
+    );
 
     user.scope = claimToArray(user.scope);
     user.roles = claimToArray(user.roles);
