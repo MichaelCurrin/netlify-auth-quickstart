@@ -1,5 +1,5 @@
-const SHOWS_URL = "/.netlify/functions/shows"
-const ME_URL = "/.netlify/functions/me"
+const SHOWS_URL = "/.netlify/functions/shows";
+const ME_URL = "/.netlify/functions/me";
 
 let auth0 = null;
 
@@ -11,7 +11,7 @@ async function login(targetUrl) {
     console.log("Logging in", targetUrl);
 
     const options = {
-      redirect_uri: window.location.origin
+      redirect_uri: window.location.origin,
     };
 
     if (targetUrl) {
@@ -31,7 +31,7 @@ function logout() {
   try {
     console.log("Logging out");
     auth0.logout({
-      returnTo: window.location.origin
+      returnTo: window.location.origin,
     });
   } catch (err) {
     console.log("Log out failed", err);
@@ -55,7 +55,7 @@ async function configureClient() {
   auth0 = await createAuth0Client({
     domain: json.domain,
     client_id: json.clientId,
-    audience: json.audience
+    audience: json.audience,
   });
 }
 
@@ -73,14 +73,14 @@ async function requireAuth(fn, targetUrl) {
   }
 
   return login(targetUrl);
-};
+}
 
 async function _request(url, token) {
   const options = {
     headers: {
-      Authorization: `Bearer ${token}`
-    }
-  }
+      Authorization: `Bearer ${token}`,
+    },
+  };
   const resp = await fetch(url, options);
 
   return await resp.json();
@@ -93,7 +93,7 @@ async function callApi(url) {
   try {
     const token = await auth0.getTokenSilently();
 
-    const json = await _request(url, token)
+    const json = await _request(url, token);
 
     const output = document.getElementById("api-call-result");
     output.innerText = JSON.stringify(json, {}, 2);
@@ -118,6 +118,8 @@ window.onload = async () => {
   const bodyElement = document.getElementsByTagName("body")[0];
 
   // Listen out for clicks on any hyperlink that navigates to a #/ URL
+  // TODO: more elegant is only listen to clicks on `a` tags. I guess they might be added later so
+  // this covers future ones?
   bodyElement.addEventListener("click", (e) => {
     if (isRouteLink(e.target)) {
       const url = e.target.getAttribute("href");

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  $('#example').DataTable({
-    "ajax": 'data.json'
+  $("#example").DataTable({
+    ajax: "data.json",
   });
 });

@@ -6,7 +6,7 @@ const router = {
     requireAuth(() => showContent("content-profile"), "/profile"),
   "/external-api": () =>
     requireAuth(() => showContent("content-external-api"), "/external-api"),
-  "/login": () => login()
+  "/login": () => login(),
 };
 
 /**
