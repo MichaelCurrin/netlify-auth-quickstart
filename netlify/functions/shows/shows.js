@@ -4,8 +4,8 @@
 const fetch = require("node-fetch");
 const { requireScope } = require("../../lib/auth");
 
-const SCOPE = "read:shows";
 const SHOWS_SERVICE_URL = "https://api.tvmaze.com/shows";
+const SCOPE = "read:shows";
 
 async function _request(url) {
   const resp = await fetch(url);
