@@ -59,10 +59,10 @@ async function _configureClient() {
   }
 
   if (config.scope) {
-    params.scope = config.scope
+    params.scope = config.scope;
   }
 
-  return await createAuth0Client();
+  return await createAuth0Client(params);
 }
 
 /**
