@@ -4,7 +4,7 @@ const ME_URL = "/.netlify/functions/me";
 let auth0 = null;
 
 /**
- * Starts the authentication flow
+ * Start the authentication flow.
  */
 async function login(targetUrl) {
   try {
@@ -25,7 +25,7 @@ async function login(targetUrl) {
 }
 
 /**
- * Executes the logout flow
+ * Execute the logout flow.
  */
 function logout() {
   try {
@@ -48,7 +48,7 @@ function fetchAuthConfig() {
 /**
  * Initialize the Auth0 client.
  */
-async function configureClient() {
+async function _configureClient() {
   const resp = await fetchAuthConfig();
   const config = await resp.json();
 
@@ -60,10 +60,9 @@ async function configureClient() {
 }
 
 /**
- * Check if the user is authenticated. If so, `fn` is executed. Otherwise, the user is prompted to
- * log in.
+ * Check if the user is authenticated.
  *
- * @param {*} fn The function to execute if the user is logged in
+ * @param {Function} fn The function to execute if the user is logged in.
  */
 async function requireAuth(fn, targetUrl) {
   const isAuthenticated = await auth0.isAuthenticated();
@@ -107,9 +106,9 @@ async function callApi(url) {
 }
 
 window.onload = async () => {
-  auth0 = await configureClient();
+  auth0 = await _configureClient();
 
-  // If unable to parse the history hash, default to the root URL
+  // If unable to parse the history hash, default to the root URL.
   if (!showContentFromUrl(window.location.pathname)) {
     showContentFromUrl("/");
     window.history.replaceState({ url: "/" }, {}, "/");
@@ -117,7 +116,7 @@ window.onload = async () => {
 
   const bodyElement = document.getElementsByTagName("body")[0];
 
-  // Listen out for clicks on any hyperlink that navigates to a #/ URL
+  // Listen out for clicks on any hyperlink that navigates to a `#/` URL.
   // TODO: more elegant is only listen to clicks on `a` tags. I guess they might be added later so
   // this covers future ones?
   bodyElement.addEventListener("click", (e) => {
@@ -138,20 +137,20 @@ window.onload = async () => {
   const isAuthenticated = await auth0.isAuthenticated();
 
   if (isAuthenticated) {
-    console.log("> User is authenticated");
+    console.log("User is authenticated");
     window.history.replaceState({}, document.title, window.location.pathname);
     updateUI();
 
     return;
   }
 
-  console.log("> User not authenticated");
+  console.log("User not authenticated");
 
   const query = window.location.search;
   const shouldParseResult = query.includes("code=") && query.includes("state=");
 
   if (shouldParseResult) {
-    console.log("> Parsing redirect");
+    console.log("Parsing redirect");
     try {
       const result = await auth0.handleRedirectCallback();
 
