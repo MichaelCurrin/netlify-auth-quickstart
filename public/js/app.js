@@ -52,11 +52,17 @@ async function _configureClient() {
   const resp = await fetchAuthConfig();
   const config = await resp.json();
 
-  return await createAuth0Client({
+  const params = {
     domain: config.domain,
     client_id: config.clientId,
     audience: config.audience,
-  });
+  }
+
+  if (config.scope) {
+    params.scope = config.scope
+  }
+
+  return await createAuth0Client();
 }
 
 /**
