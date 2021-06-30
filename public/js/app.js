@@ -52,7 +52,7 @@ async function configureClient() {
   const resp = await fetchAuthConfig();
   const json = await resp.json();
 
-  auth0 = await createAuth0Client({
+  return await createAuth0Client({
     domain: json.domain,
     client_id: json.clientId,
     audience: json.audience,
@@ -93,10 +93,10 @@ async function callApi(url) {
   try {
     const token = await auth0.getTokenSilently();
 
-    const json = await _request(url, token);
+    const respData = await _request(url, token);
 
     const output = document.getElementById("api-call-result");
-    output.innerText = JSON.stringify(json, {}, 2);
+    output.innerText = JSON.stringify(respData, {}, 2);
 
     document.querySelectorAll("pre code").forEach(hljs.highlightBlock);
 
@@ -107,7 +107,7 @@ async function callApi(url) {
 }
 
 window.onload = async () => {
-  await configureClient();
+  auth0 = await configureClient();
 
   // If unable to parse the history hash, default to the root URL
   if (!showContentFromUrl(window.location.pathname)) {
