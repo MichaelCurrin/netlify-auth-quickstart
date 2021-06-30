@@ -81,18 +81,16 @@ async function callApi(url) {
   try {
     const token = await auth0.getTokenSilently();
     const options = {
-      method: 'POST',
-      body: "",
       headers: {
         Authorization: `Bearer ${token}`
       }
     }
-    const response = await fetch(url, options);
+    const resp = await fetch(url, options);
 
-    const json = await response.json();
-    const responseElement = document.getElementById("api-call-result");
+    const json = await resp.json();
 
-    responseElement.innerText = JSON.stringify(json, {}, 2);
+    const output = document.getElementById("api-call-result");
+    output.innerText = JSON.stringify(json, {}, 2);
 
     document.querySelectorAll("pre code").forEach(hljs.highlightBlock);
 
