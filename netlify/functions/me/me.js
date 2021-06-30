@@ -4,17 +4,19 @@
 const { verifyJwt } = require("../../lib/auth");
 
 exports.handler = verifyJwt(async (_event, context) => {
+  let statusCode = 200;
+  let payload;
+
   try {
     const { claims } = context.identityContext;
-
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ claims }),
-    };
+    payload = { claims };
   } catch (err) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error_description: err.message }),
-    };
+    statusCode = 500;
+    payload = { error_description: err.message };
   }
+
+  return {
+    statusCode,
+    body: JSON.stringify(payload),
+  };
 });
