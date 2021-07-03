@@ -135,15 +135,15 @@ window.onload = async () => {
   });
 
   const apiMe = document.getElementById('api-me')
-  apiMe.onclick = function (e) {
+  apiMe.onclick = function () {
     console.debug('Requesting Me endpoint ')
     callApi(ME_URL);
   }
 
   const apiShows = document.getElementById('api-shows')
-  apiShows.onclick = function (e) {
-    console.debug('Requesting Me endpoint ')
-    callApi(ME_URL);
+  apiShows.onclick = function () {
+    console.debug('Requesting Shows endpoint ')
+    callApi(SHOWS_URL);
   }
 
   const isAuthenticated = await auth0.isAuthenticated();
