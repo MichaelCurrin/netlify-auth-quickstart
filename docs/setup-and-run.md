@@ -5,9 +5,15 @@ How to set up and run this example.
 
 ## Notes
 
-- You can **no** longer use `http` URLs when configuring the Auth0 app, when means that `http:localhost` will be rejected when configuring. So you **must** set up a remote-only app - or figure out a way to get localhost running on `https` and with a cert.
 - None of the details used here are sensitive. You can commit them safely.
 - In this example, the intended URL for the app will be `https://netlify-function-auth-quickstart.netlify.app`, so that is used throughout.
+
+
+## Local development
+
+You can **no** longer use `http` URLs when configuring the Auth0 app, when means that `http:localhost` will be rejected when configuring. So you **must** set up a remote-only app - or figure out a way to get localhost running on `https` and with a cert.
+
+If you just want to edit the HTML and JS files and preview the UI locally, then start a web server in the [public](/public/) directory.
 
 
 ## Steps
@@ -18,9 +24,9 @@ How to set up and run this example.
 
 ### 1. Auth0
 
-1. Set up an account on [Auth0](https://auth0.com). 
+1. Set up an account on [Auth0](https://auth0.com).
     - A free account will be fine - it allows thousands of request a month on the free tier.
-1. Go to Applications tab and create an application. 
+1. Go to Applications tab and create an application.
 1. Configure it. Example values:
     - Name: `Netlify Function Auth Quickstart`
     - Application: `Single-Page Application`
@@ -29,7 +35,7 @@ How to set up and run this example.
     - Domain: `dev-x1rgzxvi.us.auth0.com`
     - Client ID - `bzH1tzixL8W34435UoA67hjVhk3AieEd`
     - Client Secret - this must be kept **secret** and never made public or in version control. You do **not** need this value fo this project.
-1. Go to APIs tab and create API. 
+1. Go to APIs tab and create API.
 1. Configure it. Example values:
     - Name: `Netlify Function Auth Quickstart`
     - Identifier (audience) - `https://netlify-function-auth-quickstart.netlify.app/` (your app URL)
@@ -54,7 +60,7 @@ How to set up and run this example.
     - `clientId` - `bzH1tzixL8W34435UoA67hjVhk3AieEd` (from `Client ID` in Auth0)
     - `audience` `https://netlify-function-auth-quickstart.netlify.app/` (your app URL)
     - `scope` - `openid profile read:shows` (standard permissions plus a custom scope)
-    
+
 When you commit on GitHub or push local code, that will trigger Netlify to run.
 
 Now you can test your site on your app URL.
