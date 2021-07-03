@@ -10,7 +10,9 @@
 
 <div align="center">
     <a href="https://netlify-function-auth-quickstart.netlify.app/">
-        <img src="/sample.png" alt="Sample screenshot" title="Sample screenshot" width="400" />
+        <img src="/sample-home.png" alt="Sample screenshot" width="500" />
+        <img src="/sample-api.png" alt="Sample screenshot" width="500" />
+        <img src="/sample-table.png" alt="Sample screenshot" width="500" />
     </a>
 </div>
 
