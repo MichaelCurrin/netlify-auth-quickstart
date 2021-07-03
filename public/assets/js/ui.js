@@ -38,7 +38,8 @@ function showContentFromUrl(url) {
 }
 
 /**
- * Returns true if `element` is a hyperlink that can be considered a link to another SPA route
+ * Returns true if `element` is a hyperlink that can be considered a link to another SPA route.
+ *
  * @param {*} element The element to check
  */
 function isRouteLink(element) {

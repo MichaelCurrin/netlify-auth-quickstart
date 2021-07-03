@@ -123,8 +123,6 @@ window.onload = async () => {
   const bodyElement = document.getElementsByTagName("body")[0];
 
   // Listen out for clicks on any hyperlink that navigates to a `#/` URL.
-  // TODO: more elegant is only listen to clicks on `a` tags. I guess they might be added later so
-  // this covers future ones?
   bodyElement.addEventListener("click", (e) => {
     if (isRouteLink(e.target)) {
       const url = e.target.getAttribute("href");
@@ -133,12 +131,20 @@ window.onload = async () => {
         e.preventDefault();
         window.history.pushState({ url }, {}, url);
       }
-    } else if (e.target.getAttribute("id") === "call-api") {
-      e.preventDefault();
-
-      callApi(ME_URL);
     }
   });
+
+  const apiMe = document.getElementById('api-me')
+  apiMe.onclick = function (e) {
+    console.debug('Requesting Me endpoint ')
+    callApi(ME_URL);
+  }
+
+  const apiShows = document.getElementById('api-shows')
+  apiShows.onclick = function (e) {
+    console.debug('Requesting Me endpoint ')
+    callApi(ME_URL);
+  }
 
   const isAuthenticated = await auth0.isAuthenticated();
 
