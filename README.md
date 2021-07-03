@@ -15,12 +15,13 @@
 </div>
 
 
-## Made with
+## Web app
 
-- Netlify
-- Auth0
-- plain JS (no React)
-- jQuery Datatables
+<div align="center">
+
+[![View - Demo site](https://img.shields.io/badge/View-Demo_site-2ea44f?style=for-the-badge)](https://netlify-function-auth-quickstart.netlify.app/)
+
+</div>
 
 
 ## Documentation
