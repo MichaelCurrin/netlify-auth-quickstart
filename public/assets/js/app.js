@@ -136,13 +136,13 @@ window.onload = async () => {
 
   const apiMe = document.getElementById('api-me')
   apiMe.onclick = function () {
-    console.debug('Requesting Me endpoint ')
+    console.debug(`Requesting Me endpoint - ${ME_URL}`)
     callApi(ME_URL);
   }
 
   const apiShows = document.getElementById('api-shows')
   apiShows.onclick = function () {
-    console.debug('Requesting Shows endpoint ')
+    console.debug(`Requesting Shows endpoint - ${SHOWS_URL}`)
     callApi(SHOWS_URL);
   }
 
