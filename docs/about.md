@@ -8,10 +8,12 @@
     - [Netlify Functions](https://functions.netlify.com/) to run serverless JS code in the cloud.
 - [Auth0](https://auth0.com/)
     - Control login with JWT and manage users from an admin view.
+    - See the [Auth0](https://michaelcurrin.github.io/dev-resources/resources/tools/auth0.html) section of my Dev Resources if you are new to Auth0.
 - [jQuery DataTables](https://datatables.net)
     - Create an HTML table using JS and JSON data.
-- Plain JS (no React)
+- Plain JS (no React).
 
+If you are interested in Auth0 with React, see my [Auth0 React](https://michaelcurrin.github.io/code-cookbook/recipes/javascript/packages/react/auth0.html) recipes.
 
 
 ## Flow
