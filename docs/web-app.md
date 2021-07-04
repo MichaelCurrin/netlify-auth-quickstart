@@ -6,22 +6,34 @@
 
 </div>
 
-You can't access `/login` and `/profile` as URLs directly. But on the root page, you can use the menu in the top right. From there you can login and then view your Profile.
-
 
 ## Functions
 
-There are two endpoints.
+There are three endpoints.
+
+### Me
 
 The first returns info about the user. It requires user to be authorized only.
 
 - `/.netlify/functions/me` - see [netlify/functions/me/me.js](/netlify/functions/me/me.js) module.
+
+### Shows
 
 The second retrieves some shows data from an external API (this could be a database query in a real app). This required additional permissions.
 
 - `/.netlify/functions/shows` - see [netlify/functions/shows/shows.js](/netlify/functions/shows/shows.js) module.
 
 Specifically, only users who have the `read:shows` permissions scope can access this endpoint, as that scope is set up in the JS file. Grant this permission to a user in the Auth0 manager view - _User Management_, _Permissions, _Add Permissions_. Or grant a user a role, such as "Editor" which has "write" access to multiple endpoints.
+
+### People
+
+This endpoint has a static JSON file that is only visible to the Function and not served as a public file.
+
+The Function serves this file to the requester, if they are authenticated.
+
+- `/.netlify/functions/people` - see [netlify/functions/shows/people.js](/netlify/functions/shows/people.js) module.
+
+This endpoint is used for the DataTables demo, such the table set up step requests the Function URL with a token.
 
 
 ## How do you know the Functions are only showing data to authorized users?
