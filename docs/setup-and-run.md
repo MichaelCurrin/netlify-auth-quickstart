@@ -22,7 +22,7 @@ If you just want to edit the HTML and JS files and preview the UI locally, then 
 
 1. Fork this repo on GitHub so that you can edit the code.
 
-### 1. Auth0
+### 2. Auth0
 
 1. Set up an account on [Auth0](https://auth0.com).
     - A free account will be fine - it allows thousands of request a month on the free tier.
@@ -43,7 +43,7 @@ If you just want to edit the HTML and JS files and preview the UI locally, then 
         - Permisions: `read:shows`
         - Description: `Shows`
 
-### 2. Netlify
+### 3. Netlify
 
 1. Set up an account on [Netlify](https://netlify.com).
     - The free tier has plenty of allocated usage to build multiple projects for free. You can also configure your app with a custom domain that you own, without being billed by Netlify.
@@ -52,7 +52,7 @@ If you just want to edit the HTML and JS files and preview the UI locally, then 
     - `JWT_AUDIENCE` - `https://netlify-auth-quickstart.netlify.app/` (your app URL)
     - `JWT_ISSUER` - `https://dev-x1rgzxvi.us.auth0.com/` (from `Domain` in Auth0)
 
-### 3. Configure codebase
+### 4. Configure codebase
 
 1. Edit the [public/auth_config.json](/public/auth_config.json) file.
 1. Configure all the values in the file. Note when protocol or trailing slash are added or excluded - your app can break otherwise. Example:
@@ -61,12 +61,14 @@ If you just want to edit the HTML and JS files and preview the UI locally, then 
     - `audience` `https://netlify-auth-quickstart.netlify.app/` (your app URL)
     - `scope` - `openid profile read:shows` (standard permissions plus a custom scope)
 
-When you commit on GitHub or push local code, that will trigger Netlify to run.
+When you commit on GitHub or push local code, that will trigger Netlify to deploy your app.
+
+### 5. Testing
 
 Now you can test your site on your app URL.
 
 Sign in as your Auth0 user.
 
-Or in Auth0, create a new user by email address and sent out an invite.
+Or, in Auth0, create a new user by email address and sent out an invite.
 
-You can also enable Registration so that any user can register at the Auth0 sign-in screen in your flow.
+You can also enable _Registration_ so that any user can register at the Auth0 login screen.
