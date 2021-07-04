@@ -27,13 +27,48 @@ Specifically, only users who have the `read:shows` permissions scope can access 
 
 ### People
 
-This endpoint has a static JSON file that is only visible to the Function and not served as a public file.
-
-The Function serves this file to the requester, if they are authenticated.
+This endpoint is used for the DataTables demo, such that the table's setup step requests the Function URL, with a token. The Function serves this JSON to the requester, if they are authenticated.
 
 - `/.netlify/functions/people` - see [netlify/functions/shows/people.js](/netlify/functions/shows/people.js) module.
 
-This endpoint is used for the DataTables demo, such the table set up step requests the Function URL with a token.
+This endpoint has a static JSON file that is only visible to the Function and **not** served as a public file.
+
+- [netlify/lib/peopleData.json](/netlify/lib/peopleData.json)
+
+The actual content of the JSON file is mock data provided on the jQuery DataTables docs.
+
+In a real app, this could be replaced with something like:
+
+- Update the JSON file with your own private file (make sure your GitHub repo is private).
+- Replace the file with a call to another API or to your database, done on every endpoint request.
+- Do an API or database request at build time, or use some other local data in the repo to generate the JSON file such as with Jekyll, then output the file. Here's a simple example:
+    - Set up a build command to create the file.
+        ```toml
+        [build]
+        command = "echo '[ "abc", "def", "ghi" ]' > netlify/lib/foo.json
+        ```
+    - Load the file in your Function.
+
+Note that if you do have a static JSON file, there are two approaches for loading the file:
+
+- You could choose to load the file using `require`, so that it be comes a JS object, then return some or all of the file, filtering or limiting the results, converting to a JSON string before returning.
+    ```javascript
+    const FOO_DATA = require("../../lib/foo.json");
+
+    // ...
+    statusCode = 200;
+    body = JSON.stringify(FOO_DATA);
+    ```
+- Read the JSON file as text and return the file as text, if you are happy to serve the file unaltered. This will be more efficient because you don't process the contents of the file, and therefore it will be faster and cheaper.
+    ```javascript
+    const fs = require("fs");
+
+    const FOO_DATA = fs.readFileSync('../../lib/foo.json', 'utf-8');
+
+    // ...
+    statusCode = 200;
+    body = FOO_DATA;
+    ```
 
 
 ## How do you know the Functions are only showing data to authorized users?
