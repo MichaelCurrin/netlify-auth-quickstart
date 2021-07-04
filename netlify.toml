@@ -1,6 +1,7 @@
 [build]
   functions = "netlify/functions"
   publish = "public"
-  
-[context.production]
-  environment = { JWT_ISSUER = "https://dev-x1rgzxvi.us.auth0.com/", JWT_AUDIENCE = "https://netlify-auth-quickstart.netlify.app/"}
+
+# This is supposed to work but I haven't had success yet.
+#[context.production]
+#  environment = { JWT_ISSUER = "https://dev-x1rgzxvi.us.auth0.com/", JWT_AUDIENCE = "https://netlify-auth-quickstart.netlify.app/" }
