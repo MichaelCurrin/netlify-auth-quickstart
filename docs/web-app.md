@@ -59,7 +59,7 @@ Note that if you do have a static JSON file, there are two approaches for loadin
     statusCode = 200;
     body = JSON.stringify(FOO_DATA);
     ```
-- Read the JSON file as text and return the file as text, if you are happy to serve the file unaltered. This will be more efficient because you don't process the contents of the file, and therefore it will be faster and cheaper.
+- Read the JSON file as text and return the file as text, if you are happy to serve the file unaltered. This will be more efficient because you don't process the contents of the file, and therefore it will be faster and cheaper. You could even use this approach to serve other formats such as YAML data or HTML pages.
     ```javascript
     const fs = require("fs");
 
