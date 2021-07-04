@@ -16,7 +16,7 @@ $(document).ready(async function () {
 
   await initialize();
 
-  if (!auth0.isAuthenticated()) {
+  if (await auth0.isAuthenticated() === false) {
     alert("Please login from the homepage");
 
     return;
@@ -27,7 +27,7 @@ $(document).ready(async function () {
   try {
     token = await auth0.getTokenSilently();
   } catch (e) {
-    console.error(e);
+    console.error(e.toString());
 
     return;
   }
