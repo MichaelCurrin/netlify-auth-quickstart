@@ -5,7 +5,7 @@ const { verifyJwt } = require("../../lib/auth");
 
 const PEOPLE_DATA = require("../../lib/peopleData.json");
 
-exports.handler = verifyJwt(async (_event, _context) => {
+async function people(_event, _context) {
   let statusCode = 200;
   let payload;
 
@@ -20,4 +20,6 @@ exports.handler = verifyJwt(async (_event, _context) => {
     statusCode,
     body: JSON.stringify(payload),
   };
-});
+}
+
+exports.handler = verifyJwt(people);

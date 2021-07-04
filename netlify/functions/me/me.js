@@ -3,7 +3,7 @@
  */
 const { verifyJwt } = require("../../lib/auth");
 
-exports.handler = verifyJwt(async (_event, context) => {
+async function me(_event, context) {
   let statusCode = 200;
   let payload;
 
@@ -19,4 +19,6 @@ exports.handler = verifyJwt(async (_event, context) => {
     statusCode,
     body: JSON.stringify(payload),
   };
-});
+}
+
+exports.handler = verifyJwt(me);

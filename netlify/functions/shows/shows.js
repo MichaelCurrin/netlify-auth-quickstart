@@ -18,7 +18,7 @@ async function request(url) {
   }));
 }
 
-exports.handler = requireScope(SCOPE, async (_event, _context) => {
+async function shows(_event, _context) {
   let statusCode = 200;
   let payload;
 
@@ -33,4 +33,6 @@ exports.handler = requireScope(SCOPE, async (_event, _context) => {
     statusCode,
     body: JSON.stringify(payload),
   };
-});
+}
+
+exports.handler = requireScope(SCOPE, shows);
