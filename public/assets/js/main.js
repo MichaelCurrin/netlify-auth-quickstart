@@ -1,26 +1,28 @@
-$(document).ready(async function () {
-  console.log("Setting up DataTable");
-
-  await initialize();
-
-  if (auth0 === null) {
-    console.warn("auth0 not set - not logged in?");
-    return;
-  } else {
-    console.log("Authenticated!");
-  }
-
-  const token = await auth0.getTokenSilently();
-
+function setupTable(elSelector, url, token) {
   const options = {
     ajax: {
-      url: PEOPLE_URL,
+      url,
       headers: {
         Authorization: `Bearer ${token}`,
       },
     },
   };
 
-  const target = $("#example");
-  target.DataTable(options);
+  $(elSelector).DataTable(options);
+}
+
+$(document).ready(async function () {
+  const elSelector = "#example"
+
+  await initialize();
+
+  console.log('Checking login status')
+  const token = await auth0.getTokenSilently();
+
+  if (token.isAuthenticated()) {
+    console.log("Setting up DataTable");
+    setupTable(elSelector, PEOPLE_URL, token)
+  } else {
+    alert('Not authenticated!')
+  }
 });
