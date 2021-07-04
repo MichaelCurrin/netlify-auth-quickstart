@@ -22,17 +22,20 @@ If you just want to edit the HTML and JS files and preview the UI locally, then 
 
 Before you start, make sure to define the following desired values, which you'll use across Netlify, Auth0 and your codebase.
 
-- Netlify app URL (aka `Domain` or `Audience`) 
+- Netlify app URL (aka `Domain` or `Audience` or `Identifier`) 
     - e.g. `https://netlify-auth-quickstart.netlify.app/` for this tutorial. 
     - e.g. `https://my-app.netlify.app/`.
 - Auth0 app URL (aka `JWT Issuer`)
     - e.g. `dev-x1rgzxvi.eu.auth0.com` for this tutorial as an auto-generated value.
     - e.g. `my-app.eu.auth0.com`.
+- Auth0 app name
+    - e.g. `Netlify Auth Quickstart`
 - Auth0 permissions, if you want to use this feature.
     - e.g. `read:shows`
 
 ### 1. Create repo
 
+1. Sign in to GitHub.
 1. Get a copy of this repo.
     - [Use this template](https://github.com/MichaelCurrin/netlify-auth-quickstart/generate).
     - Or fork this repo (just know that your repo will diverge from the original because of config changes, so it can be contributing PRs harder).
@@ -41,45 +44,59 @@ Before you start, make sure to define the following desired values, which you'll
 
 1. Set up an account on [Auth0](https://auth0.com).
     - A free account will be fine - it allows thousands of request a month on the free tier.
-    - Sign up with your GitHub account if you like , for passwordless sign in.
+    - Sign up with your GitHub account if you like, for passwordless sign in.
 1. Create a tenant.
     - You might want to keep the generated default one as your dev environment. e.g. `dev-x1rgzxvi.us.auth0.com` for this tutorial.
     - This can't be renamed.
     - You can make new ones later for staging and production. e.g. `my-app.eu.auth0.com`.
-1. Go to Applications tab and create an application.
-1. Configure it. Example values:
-    - Name: `Netlify Auth Quickstart`
-    - Application: `Single-Page Application`
-    - Application Login URI, Allowed Callback URLs, Allowed Logout URLs, Allowed Web Origins - set all of them to `https://netlify-auth-quickstart.netlify.app`
-1. Take note of auto-generated values. Example:
-    - Domain: `dev-x1rgzxvi.us.auth0.com`
-    - Client ID - `bzH1tzixL8W34435UoA67hjVhk3AieEd`
-    - Client Secret - this must be kept **secret** and never made public or in version control. You do **not** need this value fo this project.
-1. Go to APIs tab and create API.
-1. Configure it. Example values:
-    - Name: `Netlify Auth Quickstart`
-    - Identifier (audience) - `https://netlify-auth-quickstart.netlify.app/` (your app URL)
-    - Permissions: Add item:
-        - Permisions: `read:shows`
-        - Description: `Shows`
+1. Set up an application in Auth0.
+    1. Go to the Applications tab.
+    1. Create an application.
+    1. Configure it. Example values:
+        - Name: `Netlify Auth Quickstart`
+        - Application: `Single-Page Application`
+        - Application Login URI: `https://netlify-auth-quickstart.netlify.app` (your Netlify app URL)
+        - Allowed Callback URLs: same as above
+        - Allowed Logout URLs: same as above
+        - Allowed Web Origins: same as above
+    1. Take note of the fixed values. Example:
+        - Domain: `dev-x1rgzxvi.us.auth0.com` (reused across your Applications in Auth0)
+        - Client ID: `bzH1tzixL8W34435UoA67hjVhk3AieEd` (unique to your Application)
+1. Set up an API in Auth0.
+    1. Go to the APIs tab.
+    1. Create an API.
+    1. Configure it. Example values:
+        - Name: `Netlify Auth Quickstart`
+        - Identifier: `https://netlify-auth-quickstart.netlify.app/` (your app URL). 
+            - The help says this does not have to be a URL.
+            - You might want to add `/.netlify/functions` or `/api/v1/`, or even make that the entire value, to make the identifier to make it easier to read.
+            - This will be used as the `audience` identifier on API calls.
+        - Permissions:
+            - Permisions: `read:shows`
+            - Description: `Shows`
 
 ### 3. Netlify
 
 1. Set up an account on [Netlify](https://netlify.com).
     - The free tier has plenty of allocated usage to build multiple projects for free. You can also configure your app with a custom domain that you own, without being billed by Netlify.
-1. Create a Netlify app, hooked
-1. Set environment variables under _Build & Deploy_ then _Environment_. Example values:
-    - `JWT_AUDIENCE` - `https://netlify-auth-quickstart.netlify.app/` (your app URL)
-    - `JWT_ISSUER` - `https://dev-x1rgzxvi.us.auth0.com/` (from `Domain` in Auth0)
+    - Sign up with your GitHub account if you like, for passwordless sign in.
+1. Create a Netlify app, connected to a repo.
+1. Rename the app URL.
+1. Set variables under Build Environment.
+    - `JWT_ISSUER` - `https://dev-x1rgzxvi.us.auth0.com/` (your Auth0 app URL including protocol)
+    - `JWT_AUDIENCE` - `https://netlify-auth-quickstart.netlify.app/` (your Netlify app URL)
 
 ### 4. Configure codebase
 
-1. Edit the [public/auth_config.json](/public/auth_config.json) file.
-1. Configure all the values in the file. Note when protocol or trailing slash are added or excluded - your app can break otherwise. Example:
-    - `domain` - `dev-x1rgzxvi.us.auth0.com` (from `Domain` in Auth0)
-    - `clientId` - `bzH1tzixL8W34435UoA67hjVhk3AieEd` (from `Client ID` in Auth0)
-    - `audience` `https://netlify-auth-quickstart.netlify.app/` (your app URL)
-    - `scope` - `openid profile read:shows` (standard permissions plus a custom scope)
+1. Update auth config.
+    1. Edit the [public/auth_config.json](/public/auth_config.json) file.
+    1. Configure all the values in the file. Note when protocol or trailing slash are added or excluded - your app can break otherwise. Example:
+        - `domain` - `dev-x1rgzxvi.us.auth0.com` (your Auth0 app URL eexcluding protocol)
+        - `clientId` - `bzH1tzixL8W34435UoA67hjVhk3AieEd` (from `Client ID` in Auth0)
+        - `audience` `https://netlify-auth-quickstart.netlify.app/` (your Netlify app URL)
+        - `scope` - `openid profile read:shows` (standard permissions, plus a custom scope)
+1. Configure Netlify.
+    1. Edit the [netlify.toml](/netlify.toml) file.
 
 When you commit on GitHub or push local code, that will trigger Netlify to deploy your app.
 
