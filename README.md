@@ -30,6 +30,17 @@
 </div>
 
 
+## Use this project
+
+<div align="center">
+
+[![Use this template](https://img.shields.io/badge/Generate-Use_this_template-2ea44f?style=for-the-badge)](https://github.com/MichaelCurrin/netlify-auth-quickstart/generate)
+
+</div>
+
+Click the button above and then follow the instructions in the docs.
+
+
 ## Documentation
 
 About this project and how to configure it.
