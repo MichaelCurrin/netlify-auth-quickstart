@@ -94,7 +94,7 @@ async function _request(url, token) {
 }
 
 /**
- * Call the API endpoint with an authorization token.
+ * Call the API endpoint with an auth token and set the result in a codeblock.
  */
 async function callApi(url) {
   try {
