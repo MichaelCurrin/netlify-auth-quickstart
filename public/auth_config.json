@@ -1,6 +1,6 @@
 {
   "domain": "dev-x1rgzxvi.us.auth0.com",
   "clientId": "bzH1tzixL8W34435UoA67hjVhk3AieEd",
-  "audience": "https://netlify-auth-quickstart.netlify.app/",
+  "audience": "https://netlify-auth-quickstart.netlify.app/.netlify/functions",
   "scope": "openid profile read:shows"
 }
