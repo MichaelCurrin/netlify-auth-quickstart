@@ -18,7 +18,7 @@ If you just want to edit the HTML and JS files and preview the UI locally, then 
 
 ## Steps
 
-### 0. Planned config values
+### 0. Plan your config values
 
 Before you start, make sure to define the following desired values, which you'll use across Netlify, Auth0 and your codebase.
 
@@ -28,7 +28,7 @@ Before you start, make sure to define the following desired values, which you'll
 - Auth0 app URL (aka `JWT Issuer`)
     - e.g. `dev-x1rgzxvi.eu.auth0.com` for this tutorial as an auto-generated value.
     - e.g. `my-app.eu.auth0.com`.
-- Auth0 app name
+- Auth0 names for Application and API (this is just cosmetic)
     - e.g. `Netlify Auth Quickstart`
 - Auth0 permissions, if you want to use this feature.
     - e.g. `read:shows`
@@ -55,7 +55,7 @@ Before you start, make sure to define the following desired values, which you'll
     1. Configure it. Example values:
         - Name: `Netlify Auth Quickstart`
         - Application: `Single-Page Application`
-        - Application Login URI: `https://netlify-auth-quickstart.netlify.app` (your Netlify app URL)
+        - Application Login URI: `https://netlify-auth-quickstart.netlify.app` (your Netlify app root URL)
         - Allowed Callback URLs: same as above
         - Allowed Logout URLs: same as above
         - Allowed Web Origins: same as above
@@ -67,13 +67,16 @@ Before you start, make sure to define the following desired values, which you'll
     1. Create an API.
     1. Configure it. Example values:
         - Name: `Netlify Auth Quickstart`
-        - Identifier: `https://netlify-auth-quickstart.netlify.app/` (your app URL). 
-            - The help says this does not have to be a URL.
-            - You might want to add `/.netlify/functions` or `/api/v1/`, or even make that the entire value, to make the identifier to make it easier to read.
+        - Identifier: `https://netlify-auth-quickstart.netlify.app/.netlify/functions` (your Netlify Function URL). 
+            - The help says this does not have to be a URL, so `/.netlify/functions` might be fine.
             - This will be used as the `audience` identifier on API calls.
         - Permissions:
             - Permisions: `read:shows`
             - Description: `Shows`
+1. Set up a user.
+    1. Go to the User Managment, Users tab.
+    1. Create a new user for yourself or someone else.
+    1. Open the email inbox and click on the link in the verification email.
 
 ### 3. Netlify
 
@@ -83,17 +86,17 @@ Before you start, make sure to define the following desired values, which you'll
 1. Create a Netlify app, connected to a repo.
 1. Rename the app URL.
 1. Set variables under Build Environment.
-    - `JWT_ISSUER` - `https://dev-x1rgzxvi.us.auth0.com/` (your Auth0 app URL including protocol).
-    - `JWT_AUDIENCE` - `https://netlify-auth-quickstart.netlify.app/` (your Netlify app URL)
+    - `JWT_ISSUER` - `https://dev-x1rgzxvi.us.auth0.com/` (your Auth0 app URL, including protocol and including forward slash or it breaks).
+    - `JWT_AUDIENCE` - `https://netlify-auth-quickstart.netlify.app/.netlify/functions` (your Netlify Function URL)
 
 ### 4. Configure codebase
 
 1. Update auth config.
     1. Edit the [public/auth_config.json](/public/auth_config.json) file.
     1. Configure all the values in the file. Note when protocol or trailing slash are added or excluded - your app can break otherwise. Example:
-        - `domain` - `dev-x1rgzxvi.us.auth0.com` (your Auth0 app URL eexcluding protocol)
+        - `domain` - `dev-x1rgzxvi.us.auth0.com` (your Auth0 app URL, excluding protocol. Trailing slash might not matter but it does work without)
         - `clientId` - `bzH1tzixL8W34435UoA67hjVhk3AieEd` (from `Client ID` in Auth0)
-        - `audience` `https://netlify-auth-quickstart.netlify.app/` (your Netlify app URL)
+        - `audience` `https://netlify-auth-quickstart.netlify.app/.netlify/functions` (your Netlify Functions URL)
         - `scope` - `openid profile read:shows` (standard permissions, plus a custom scope)
 
 When you commit on GitHub or push local code, that will trigger Netlify to deploy your app.
