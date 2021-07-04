@@ -18,6 +18,19 @@ If you just want to edit the HTML and JS files and preview the UI locally, then 
 
 ## Steps
 
+### 0 Desired values
+
+Before you start, make sure to define the following desired values, which you'll use across Netlify, Auth0 and your codebase.
+
+- Netlify app URL (aka `Domain` or `Audience`) 
+    - e.g. `https://netlify-auth-quickstart.netlify.app/` for this tutorial. 
+    - e.g. `https://my-app.netlify.app/`.
+- Auth0 app URL (aka `JWT Issuer`)
+    - e.g. `dev-x1rgzxvi.eu.auth0.com` for this tutorial as an auto-generated value.
+    - e.g. `my-app.eu.auth0.com`.
+- Auth0 permissions, if you want to use this feature.
+    - e.g. `read:shows`
+
 ### 1. Create repo
 
 1. Get a copy of this repo.
@@ -28,6 +41,11 @@ If you just want to edit the HTML and JS files and preview the UI locally, then 
 
 1. Set up an account on [Auth0](https://auth0.com).
     - A free account will be fine - it allows thousands of request a month on the free tier.
+    - Sign up with your GitHub account if you like , for passwordless sign in.
+1. Create a tenant.
+    - You might want to keep the generated default one as your dev environment. e.g. `dev-x1rgzxvi.us.auth0.com` for this tutorial.
+    - This can't be renamed.
+    - You can make new ones later for staging and production. e.g. `my-app.eu.auth0.com`.
 1. Go to Applications tab and create an application.
 1. Configure it. Example values:
     - Name: `Netlify Auth Quickstart`
