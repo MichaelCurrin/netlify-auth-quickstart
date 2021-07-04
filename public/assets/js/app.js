@@ -1,4 +1,4 @@
-const _FUNCTIONS = "/.netlify/functions"
+const _FUNCTIONS = "/.netlify/functions";
 const ME_URL = `${_FUNCTIONS}/me`;
 const SHOWS_URL = `${_FUNCTIONS}/shows`;
 const PEOPLE_URL = `${_FUNCTIONS}/people`;
