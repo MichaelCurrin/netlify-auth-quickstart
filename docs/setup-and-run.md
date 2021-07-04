@@ -20,7 +20,9 @@ If you just want to edit the HTML and JS files and preview the UI locally, then 
 
 ### 1. Create repo
 
-1. Fork this repo on GitHub so that you can edit the code.
+1. Get a copy of this repo.
+    - [Use this template](https://github.com/MichaelCurrin/netlify-auth-quickstart/generate).
+    - Or fork this repo (just know that your repo will diverge from the original because of config changes, so it can be contributing PRs harder).
 
 ### 2. Auth0
 
