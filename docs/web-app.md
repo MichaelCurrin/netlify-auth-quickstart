@@ -39,17 +39,23 @@ The actual content of the JSON file is mock data provided on the jQuery DataTabl
 
 In a real app, this could be replaced with something like:
 
+- Replace the file with a call to another API or to your database, done on every _endpoint_ request. If you have data that changes frequently, do that.
+    ```toml
+    [build]
+      command = "./bin/external-request.sh > _data/foo.json && cp _data/foo.json netlify/lib/"
+    ```
 - Update the JSON file with your own private file (make sure your GitHub repo is private).
-- Replace the file with a call to another API or to your database, done on every endpoint request.
-- Do an API or database request at build time, or use some other local data in the repo to generate the JSON file such as with Jekyll, then output the file. Here's a simple example:
-    - Set up a build command to create the file.
-        ```toml
-        [build]
-        command = "echo '[ "abc", "def", "ghi" ]' > netlify/lib/foo.json
-        ```
-    - Load the file in your Function.
+    ```toml
+    [build]
+      command = "cp _data/foo.json netlify/lib/"
+    ```
+- Do an API or database request at build time, or use some other local data in the repo to generate the JSON file such as with Jekyll, then output the file.
+    ```toml
+    [build]
+        command = "make build && cp _site/foo.json netlify/lib/"
+    ```
 
-Note that if you do have a static JSON file, there are two approaches for loading the file:
+Here are two approaches for loading the file.
 
 - You could choose to load the file using `require`, so that it be comes a JS object, then return some or all of the file, filtering or limiting the results, converting to a JSON string before returning.
     ```javascript
@@ -81,6 +87,12 @@ Note that if you do have a static JSON file, there are two approaches for loadin
     // OR 'Content-Type' if this doesn't work.
     headers = { contentType: "text/html" },
     ```
+
+The file could exist somewhere like:
+
+- In you repo root in version control (be careful that it doesn't get accidentally server publicly, using an ignore rule or moving the file at build time).
+- In the build directory if created by Jekyll for example, before being moved to `netlify` for safety.
+- In the `netlify` directory (in version control, or generated there directly).
 
 
 ## How do you know the Functions are only showing data to authorized users?
