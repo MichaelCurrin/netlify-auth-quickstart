@@ -83,7 +83,7 @@ Before you start, make sure to define the following desired values, which you'll
 1. Create a Netlify app, connected to a repo.
 1. Rename the app URL.
 1. Set variables under Build Environment.
-    - `JWT_ISSUER` - `https://dev-x1rgzxvi.us.auth0.com/` (your Auth0 app URL including protocol)
+    - `JWT_ISSUER` - `https://dev-x1rgzxvi.us.auth0.com/` (your Auth0 app URL including protocol).
     - `JWT_AUDIENCE` - `https://netlify-auth-quickstart.netlify.app/` (your Netlify app URL)
 
 ### 4. Configure codebase
@@ -95,8 +95,6 @@ Before you start, make sure to define the following desired values, which you'll
         - `clientId` - `bzH1tzixL8W34435UoA67hjVhk3AieEd` (from `Client ID` in Auth0)
         - `audience` `https://netlify-auth-quickstart.netlify.app/` (your Netlify app URL)
         - `scope` - `openid profile read:shows` (standard permissions, plus a custom scope)
-1. Configure Netlify.
-    1. Edit the [netlify.toml](/netlify.toml) file.
 
 When you commit on GitHub or push local code, that will trigger Netlify to deploy your app.
 
