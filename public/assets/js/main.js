@@ -12,17 +12,26 @@ function setupTable(elSelector, url, token) {
 }
 
 $(document).ready(async function () {
-  const elSelector = "#example"
+  const elSelector = "#example";
 
   await initialize();
 
-  console.log('Checking login status')
-  const token = await auth0.getTokenSilently();
+  if (!auth0.isAuthenticated()) {
+    alert("Please login from the homepage");
 
-  if (token.isAuthenticated()) {
-    console.log("Setting up DataTable");
-    setupTable(elSelector, PEOPLE_URL, token)
-  } else {
-    alert('Not authenticated!')
+    return;
   }
+
+  let token = null;
+
+  try {
+    token = await auth0.getTokenSilently();
+  } catch (e) {
+    console.error(e);
+
+    return;
+  }
+
+  console.log("Setting up DataTable");
+  setupTable(elSelector, PEOPLE_URL, token);
 });
