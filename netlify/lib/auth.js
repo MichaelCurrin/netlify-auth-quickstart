@@ -8,10 +8,10 @@ const ISSUER = process.env.JWT_ISSUER;
 const AUDIENCE = process.env.JWT_AUDIENCE;
 
 if (!ISSUER) {
-  throw new Error("JWT_ISSUER value not configured";
+  throw new Error("JWT_ISSUER value not configured");
 }
 if (!AUDIENCE) {
-  throw new Error("JWT_AUDIENCE value not configured";
+  throw new Error("JWT_AUDIENCE value not configured");
 }
 
 const verifyJwt = NetlifyJwtVerifier({
