@@ -69,7 +69,7 @@ Here are two approaches for loading the file.
     ```javascript
     const fs = require("fs");
 
-    const FOO_DATA = fs.readFileSync('../../lib/foo.json', 'utf-8');
+    const FOO_DATA = fs.readFileSync('netlify/var/foo.json', 'utf-8');
 
     // ...
     statusCode = 200;
@@ -79,7 +79,7 @@ Here are two approaches for loading the file.
     ```javascript
     const fs = require("fs");
 
-    const FOO_DATA = fs.readFileSync('../../lib/foo.html', 'utf-8');
+    const FOO_DATA = fs.readFileSync('netlify/var/foo.html', 'utf-8');
 
     // ...
     statusCode = 200;
@@ -87,6 +87,16 @@ Here are two approaches for loading the file.
     // OR 'Content-Type' if this doesn't work.
     headers = { contentType: "text/html" }
     ```
+
+Unlike imports, for `fs` the path is relative to the **project root** - from [forum question](https://answers.netlify.com/t/hosting-a-file-along-with-my-function/1527).
+
+Or need to use `path` and keep it relative.
+
+```javascript
+const path = require("path");
+
+fs.readFile(path.join(__dirname, "..", "..", "var", "data.json"))
+```
 
 The file could exist somewhere like:
 
