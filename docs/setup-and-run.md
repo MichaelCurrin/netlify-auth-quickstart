@@ -22,9 +22,11 @@ If you just want to edit the HTML and JS files and preview the UI locally, then 
 
 Before you start, make sure to define the following desired values, which you'll use across Netlify, Auth0 and your codebase.
 
-- Netlify app URL (aka `Domain` or `Audience` or `Identifier`) 
+- Netlify app URL
     - e.g. `https://netlify-auth-quickstart.netlify.app/` for this tutorial. 
     - e.g. `https://my-app.netlify.app/`.
+- Netlify API URL (aka `Audience` or `Identifier`) 
+    - e.g. `https://netlify-auth-quickstart.netlify.app/.netlify/functions` for this tutorial, using the app URL plus fixed path `/.netlify/functions`, as determined by Netlify.
 - Auth0 app URL (aka `JWT Issuer`)
     - e.g. `dev-x1rgzxvi.eu.auth0.com` for this tutorial as an auto-generated value.
     - e.g. `my-app.eu.auth0.com`.
@@ -67,16 +69,22 @@ Before you start, make sure to define the following desired values, which you'll
     1. Create an API.
     1. Configure it. Example values:
         - Name: `Netlify Auth Quickstart`
-        - Identifier: `https://netlify-auth-quickstart.netlify.app/.netlify/functions` (your Netlify Function URL). 
+        - Identifier: `https://netlify-auth-quickstart.netlify.app/.netlify/functions` (your Netlify Functions URL). 
             - The help says this does not have to be a URL, so `/.netlify/functions` might be fine.
             - This will be used as the `audience` identifier on API calls.
-        - Permissions:
-            - Permisions: `read:shows`
+        - Permissions (optional):
+            - Permissions: `read:shows`
             - Description: `Shows`
 1. Set up a user.
     1. Go to the User Managment, Users tab.
     1. Create a new user for yourself or someone else.
     1. Open the email inbox and click on the link in the verification email.
+
+Create more APIs as needed. 
+
+If you change your API URL, you'll have to create a **new** one as you cannot change an existing one's URL. And then create and assign permissions again.
+
+If you want to use roles instead of permissions, I think you also have to explicitly tick an option to enable [RBAC](https://auth0.com/docs/authorization/rbac/enable-role-based-access-control-for-apis).
 
 ### 3. Netlify
 
