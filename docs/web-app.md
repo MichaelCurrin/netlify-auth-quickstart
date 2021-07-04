@@ -45,3 +45,7 @@ You can try an endpoint in the browser directly, but you'll get an error that yo
 You can do a request with URL with a bad token and the endpoint will reject you.
 
 > Token does not contain the required 'read:shows' scope
+
+This is still useful in case you have a syntax error in your Function code, as the result will appear in the browser as an error traceback.
+
+You can also check the Function Logs section of the Netlify settings.
