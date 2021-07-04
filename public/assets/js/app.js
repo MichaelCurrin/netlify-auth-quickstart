@@ -134,17 +134,17 @@ window.onload = async () => {
     }
   });
 
-  const apiMe = document.getElementById('api-me')
+  const apiMe = document.getElementById("api-me");
   apiMe.onclick = function () {
-    console.debug(`Requesting Me endpoint - '${ME_URL}'`)
+    console.debug(`Requesting Me endpoint - '${ME_URL}'`);
     callApi(ME_URL);
-  }
+  };
 
-  const apiShows = document.getElementById('api-shows')
+  const apiShows = document.getElementById("api-shows");
   apiShows.onclick = function () {
-    console.debug(`Requesting Shows endpoint - '${SHOWS_URL}'`)
+    console.debug(`Requesting Shows endpoint - '${SHOWS_URL}'`);
     callApi(SHOWS_URL);
-  }
+  };
 
   const isAuthenticated = await auth0.isAuthenticated();
 
