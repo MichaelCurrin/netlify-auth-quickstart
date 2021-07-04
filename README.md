@@ -5,6 +5,10 @@
 [![GitHub tag](https://img.shields.io/github/tag/MichaelCurrin/netlify-auth-quickstart?include_prereleases=&sort=semver)](https://github.com/MichaelCurrin/netlify-auth-quickstart/releases/)
 [![License](https://img.shields.io/badge/License-MIT-blue)](#license)
 
+[![Made with - netlify](https://img.shields.io/badge/Made_with-netlify-blue?logo=netlify)](https://netlify.com)
+[![Made with - auth0](https://img.shields.io/badge/Made_with-auth0-blue)](https://auth0.com)
+[![Made with - jQuery DataTables](https://img.shields.io/badge/Made_with-jQuery_Datatables-blue)](https://datatables.net)
+
 
 ## Preview
 
