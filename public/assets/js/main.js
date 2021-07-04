@@ -1,15 +1,26 @@
 $(document).ready(async function () {
-  if (typeof auth0 === 'undefined' || auth0 === 'null') {
-    throw new Error('auth0 not set')
+  console.log("Setting up DataTable")
+
+  if (typeof auth0 === 'undefined') {
+    console.error('auth0 not defined')
+    return
+  }
+  else if (auth0 === null) {
+    console.warn('auth0 not set - not logged in?')
+    return
+  } else {
+    console.log('Authenticated!')
   }
 
   const token = await auth0.getTokenSilently();
 
   const options = {
-    ajax: "data.json",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
+    ajax: {
+      url: PEOPLE_URL,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
   };
 
   const target = $("#example");

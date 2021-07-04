@@ -1,5 +1,7 @@
-const SHOWS_URL = "/.netlify/functions/shows";
-const ME_URL = "/.netlify/functions/me";
+const _FUNCTIONS = "/.netlify/functions"
+const ME_URL = `${_FUNCTIONS}/me`;
+const SHOWS_URL = `${_FUNCTIONS}/shows`;
+const PEOPLE_URL = `${_FUNCTIONS}/people`;
 
 let auth0 = null;
 
@@ -116,7 +118,7 @@ async function initialize() {
 }
 
 async function mount() {
-  await initialize()
+  await initialize();
 
   // If unable to parse the history hash, default to the root URL.
   if (!showContentFromUrl(window.location.pathname)) {
