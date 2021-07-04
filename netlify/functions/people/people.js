@@ -1,10 +1,5 @@
 /**
- * Sample people endpoint.
- *
- * The JSON file referenced here can be ready by the Function but not accessed directly, keeping it
- * private. The JSON file has mock data provided on the jQuery DataTables docs.
- *
- * The JSON data could be replaced with a call to another API or to your database.
+ * People endpoint.
  */
 const { verifyJwt } = require("../../lib/auth");
 
