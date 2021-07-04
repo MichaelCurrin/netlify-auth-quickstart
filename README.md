@@ -25,7 +25,7 @@
 
 <div align="center">
 
-[![View - Demo site](https://img.shields.io/badge/View-Demo_site-2ea44f?style=for-the-badge)](https://netlify-auth-quickstart.netlify.app/)
+[![View - Demo site](https://img.shields.io/badge/View-Demo_site-blue?style=for-the-badge)](https://netlify-auth-quickstart.netlify.app/)
 
 </div>
 
