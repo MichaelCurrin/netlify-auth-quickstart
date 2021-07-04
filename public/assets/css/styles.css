@@ -11,3 +11,7 @@ label {
   margin-bottom: 10px;
   display: block;
 }
+
+.btn {
+  cursor: pointer;
+}
