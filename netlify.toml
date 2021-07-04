@@ -1,4 +1,4 @@
 [build]
   functions = "netlify/functions"
   publish = "public"
-  environment = { JWT_AUDIENCE = "https://netlify-auth-quickstart.netlify.app/", JWT_ISSUER = "https://dev-x1rgzxvi.us.auth0.com/" }
+  environment = { JWT_ISSUER = "https://dev-x1rgzxvi.us.auth0.com/", JWT_AUDIENCE = "https://netlify-auth-quickstart.netlify.app/"}
