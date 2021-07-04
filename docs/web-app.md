@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![View - Demo site](https://img.shields.io/badge/View-Demo_site-2ea44f?style=for-the-badge)](https://netlify-function-auth-quickstart.netlify.app/)
+[![View - Demo site](https://img.shields.io/badge/View-Demo_site-2ea44f?style=for-the-badge)](https://netlify-auth-quickstart.netlify.app/)
 
 </div>
 
@@ -28,7 +28,7 @@ Specifically, only users who have the `read:shows` permissions scope can access 
 
 You can try an endpoint in the browser directly, but you'll get an error that you are missing a token.
 
-- https://netlify-function-auth-quickstart.netlify.app/.netlify/functions/me
+- https://netlify-auth-quickstart.netlify.app/.netlify/functions/me
 
 You can do a request with URL with a bad token and the endpoint will reject you.
 
