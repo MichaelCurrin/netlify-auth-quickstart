@@ -11,7 +11,7 @@ How to set up and run this example.
 
 ## Local development
 
-You can **no** longer use `http` URLs when configuring the Auth0 app, when means that `http:localhost` will be rejected when configuring. So you **must** set up a remote-only app - or figure out a way to get localhost running on `https` and with a cert.
+You can **no** longer use `http` URLs when configuring the Auth0 app, when means that `http://localhost` will be rejected when configuring. So you **must** set up a remote-only app - or figure out a way to get localhost running on `https` and with a cert.
 
 If you just want to edit the HTML and JS files and preview the UI locally, then start a web server in the [public](/public/) directory.
 
@@ -23,9 +23,9 @@ If you just want to edit the HTML and JS files and preview the UI locally, then 
 Before you start, make sure to define the following desired values, which you'll use across Netlify, Auth0 and your codebase.
 
 - Netlify app URL
-    - e.g. `https://netlify-auth-quickstart.netlify.app/` for this tutorial. 
+    - e.g. `https://netlify-auth-quickstart.netlify.app/` for this tutorial.
     - e.g. `https://my-app.netlify.app/`.
-- Netlify API URL (aka `Audience` or `Identifier`) 
+- Netlify API URL (aka `Audience` or `Identifier`)
     - e.g. `https://netlify-auth-quickstart.netlify.app/.netlify/functions` for this tutorial, using the app URL plus fixed path `/.netlify/functions`, as determined by Netlify.
 - Auth0 app URL (aka `JWT Issuer`)
     - e.g. `dev-x1rgzxvi.eu.auth0.com` for this tutorial as an auto-generated value.
@@ -69,7 +69,7 @@ Before you start, make sure to define the following desired values, which you'll
     1. Create an API.
     1. Configure it. Example values:
         - Name: `Netlify Auth Quickstart`
-        - Identifier: `https://netlify-auth-quickstart.netlify.app/.netlify/functions` (your Netlify Functions URL). 
+        - Identifier: `https://netlify-auth-quickstart.netlify.app/.netlify/functions` (your Netlify Functions URL).
             - The help says this does not have to be a URL, so `/.netlify/functions` might be fine.
             - This will be used as the `audience` identifier on API calls.
         - Permissions (optional):
@@ -80,7 +80,7 @@ Before you start, make sure to define the following desired values, which you'll
     1. Create a new user for yourself or someone else.
     1. Open the email inbox and click on the link in the verification email.
 
-Create more APIs as needed. 
+Create more APIs as needed.
 
 If you change your API URL, you'll have to create a **new** one as you cannot change an existing one's URL. And then create and assign permissions again.
 
