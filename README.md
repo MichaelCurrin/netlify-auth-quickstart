@@ -1,4 +1,4 @@
-# Netlify Function Auth Quickstart
+# Netlify Auth Quickstart
 > Simple template and demo to showcase using Netlify Functions with Auth0 to protect API data
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/36b6eb3a-9f3c-4c07-bf1f-4d75e03dae85/deploy-status)](https://app.netlify.com/sites/netlify-auth-quickstart/deploys)

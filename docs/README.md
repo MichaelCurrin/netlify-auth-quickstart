@@ -1,1 +1,1 @@
-# Netlify Function Auth0 Quickstart docs
+# Netlify Auth0 Quickstart docs

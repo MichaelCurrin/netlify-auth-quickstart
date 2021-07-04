@@ -28,7 +28,7 @@ If you just want to edit the HTML and JS files and preview the UI locally, then 
     - A free account will be fine - it allows thousands of request a month on the free tier.
 1. Go to Applications tab and create an application.
 1. Configure it. Example values:
-    - Name: `Netlify Function Auth Quickstart`
+    - Name: `Netlify Auth Quickstart`
     - Application: `Single-Page Application`
     - Application Login URI, Allowed Callback URLs, Allowed Logout URLs, Allowed Web Origins - set all of them to `https://netlify-auth-quickstart.netlify.app`
 1. Take note of auto-generated values. Example:
@@ -37,7 +37,7 @@ If you just want to edit the HTML and JS files and preview the UI locally, then 
     - Client Secret - this must be kept **secret** and never made public or in version control. You do **not** need this value fo this project.
 1. Go to APIs tab and create API.
 1. Configure it. Example values:
-    - Name: `Netlify Function Auth Quickstart`
+    - Name: `Netlify Auth Quickstart`
     - Identifier (audience) - `https://netlify-auth-quickstart.netlify.app/` (your app URL)
     - Permissions: Add item:
         - Permisions: `read:shows`
