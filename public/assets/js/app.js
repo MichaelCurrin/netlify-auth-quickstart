@@ -111,7 +111,13 @@ async function callApi(url) {
   }
 }
 
+async function initialize() {
+  auth0 = await _configureClient();
+}
+
 async function mount() {
+  await initialize()
+
   // If unable to parse the history hash, default to the root URL.
   if (!showContentFromUrl(window.location.pathname)) {
     showContentFromUrl("/");
@@ -178,5 +184,3 @@ async function mount() {
 
   updateUI();
 }
-
-auth0 = await _configureClient();
