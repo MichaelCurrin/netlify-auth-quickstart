@@ -85,7 +85,7 @@ Here are two approaches for loading the file.
     statusCode = 200;
     body = FOO_DATA;
     // OR 'Content-Type' if this doesn't work.
-    headers = { contentType: "text/html" },
+    headers = { contentType: "text/html" }
     ```
 
 The file could exist somewhere like:
