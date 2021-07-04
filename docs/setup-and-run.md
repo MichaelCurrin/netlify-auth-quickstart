@@ -18,7 +18,7 @@ If you just want to edit the HTML and JS files and preview the UI locally, then 
 
 ## Steps
 
-### 0 Desired values
+### 0. Planned config values
 
 Before you start, make sure to define the following desired values, which you'll use across Netlify, Auth0 and your codebase.
 
